@@ -39,6 +39,14 @@ Want one? [Buy on Tindie](https://tindie.com/shops/bot_thoughts/eezee-propeller/
 
 ## Getting Started
 
+### Examples, Help, Community
+
+* [Propeller Documentation](http://www.parallaxsemiconductor.com/docs)
+* [Resource Index](https://forums.parallax.com/discussion/111166/propeller-resource-index) on Propeller 1 Forums
+* Lots of smart people willing to help on the [Parallax Propeller 1 Forum](https://forums.parallax.com/categories/propeller-1-multicore-microcontroller)
+* Find example programs in the [examples](../examples) directory of this repo.
+* Useful objects can be found on the [OBEX](http://obex.parallax.com/) (Propeller Object Exchange)
+
 ### IDE
 
 The following are IDEs that I recommend for Propeller programming:
@@ -57,10 +65,6 @@ Other serial adapters can be made to work, you just need a programmer with DTR, 
   * TXO -> tie to transmit (prop in, pc out)
   * DTR -> this resets the prop
   * GND -> ground
-
-### Examples
-
-You can find example programs in the [examples](../examples) directory of this repo.
 
 ## Powering the Board
 
