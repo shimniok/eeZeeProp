@@ -1,47 +1,68 @@
+# eeZeeProp User Guide
 <img src='https://lh3.googleusercontent.com/-xr2oeWmwMg8/UMbfGIW8IFI/AAAAAAAAHrI/ekIxMVEdYhE/s1025/IMG_8070.JPG' height='250' /> <img src='https://lh3.googleusercontent.com/-wDnneI9pO6g/UMbfE89JJKI/AAAAAAAAHrA/lMX0mEGxrog/s1023/IMG_8068.JPG' height='250' />
 
-# Introduction #
-
-Order on [Tindie](https://tindie.com/shops/bot_thoughts/eezee-propeller/)
-
-If you have an older, Rev 0.2 board, see [the Rev 0.2 documentation](eeZeePropRev2.md)
+## Introduction
 
 The Parallax Propeller is truly a unique and amazing chip, with 8 cogs running simultaneously and many innovative features and incredible flexibility.
 
-The eeZee Prop brings that power to the breadboard a budget-friendly breakout board ideal for prototyping.
+The eeZee Prop brings that power to the breadboard a budget-friendly breakout board ideal for prototyping. Includes onboard regulator, eeprom, power LED, crystal. Everything you need and nothing you don't.
 
-Program it with your existing FTDI or Prop Plug programmer.
+Plus you can program it either with an FTDI programmer *or* Prop Plug programmer.
 
-The board has a reset button and a power LED, and nothing else to get in the way of your creativity.
+If you have an older, Rev 0.2 board, see [the Rev 0.2 documentation](eeZeePropRev2.md)
 
-# Features #
+Want one? [Buy on Tindie](https://tindie.com/shops/bot_thoughts/eezee-propeller/)
 
-  * Works with your existing FTDI and Prop Plug programmers
-  * A Propeller in breadboard-friendly 36-DIP form factor, 0.8" wide
-  * Low cost without unneeded add-ons, perfect for prototyping
-  * Onboard 3.3V LDO regulator, flexible power options
-  * Includes 5MHz crystal, 32KB EEPROM, Reset switch, Power LED
-  * Correctly implemented reset circuitry
-  * Exposes reset pin
-  * Selectable BOE with solder jumper
-  * Fabricated and assembled in the USA
-
-# Pinout #
+## Pinout
 
 ![https://lh5.googleusercontent.com/-dQ7OgN6uLnw/UQfzotUKfvI/AAAAAAAAH6s/yRyhdUmMK9o/s674/eeZeePropPinout.jpg](https://lh5.googleusercontent.com/-dQ7OgN6uLnw/UQfzotUKfvI/AAAAAAAAH6s/yRyhdUmMK9o/s674/eeZeePropPinout.jpg)
 
-# IDE #
+## How to Assemble
 
-The following are recommended IDEs for Propeller programming:
+### Pin Headers
 
-  * [PropellerIDE](https://lamestation.atlassian.net/wiki/display/PI/Downloads) for Spin/PASM development
+Install the two 18-pin headers on a breakout board, 9 rows apart. 
+
+Place the eeZeeProp, Propeller side up, on the pin headers.
+
+Solder the pin headers
+
+### Switch
+
+Remove the eeZeeProp from the breadboard.
+
+Install the switch and bend the pins if necessary to hold it in place.
+
+Solder the switch from the bottom and then, optionally, from the top.
+
+### Programming header
+
+Provided are two 6-pin headers, one right angle, one vertical.
+
+If you're going to use both FTDI and Prop Plug, use the right angle header for Prop Plug.
+
+To use either with FTDI, install. To use either with the Prop Plug, break off two pins.
+
+Install the header(s) and carefully hold in place at the RX/DTR side, and don't touch the other side.
+
+Solder *only* the ```GND``` or ```VSS``` pin, opposite your finger.
+
+Check vertical alignment of the pin header and adjust while re-soldering the ```GND``` or ```VSS``` pin.
+
+Once aligned, solder the remaining pins.
+
+## Getting Started
+
+### IDE
+
+The following are IDEs that I recommend for Propeller programming:
+
+  * [PropellerIDE](https://github.com/parallaxinc/PropellerIDE) for Spin/PASM development
   * [SimpleIDE](http://learn.parallax.com/propeller-c-set-simpleide) and [PropGCC](http://code.google.com/p/propgcc/) for writing in C
 
-# Chip Programming #
+### Chip Programming
 
-You can either use a 5V FTDI, 3.3V FTDI or Prop Plug to program your eeZee Prop.
-
-## Other Serial Programmers ##
+You can either use a 5V FTDI, 3.3V FTDI or Prop Plug to program your eeZee Prop (see *Power Options* below). Pay careful attention to the pin labels. For FTDI, the pins are labeled ```DTR``` (aka GRN aka Green) and ```GND``` (aka BLK aka Black). For Prop Plug the pins are labeled ```RX``` and ```VSS```.
 
 Other serial adapters can be made to work, you just need a programmer with DTR, RX, TX, and GND.
 
@@ -51,49 +72,42 @@ Other serial adapters can be made to work, you just need a programmer with DTR, 
   * DTR -> this resets the prop
   * GND -> ground
 
-# Power #
+### Examples
 
-VIN Pin input voltage: 4.8V-6.0V @ 800mA; 4.7V-6.0V @ 100mA, room temperature. Lower input voltages are typically possible but not guaranteed in all cases. You may also be able to get away with a higher input voltage but the limiting factor is the 10V rating on the 10uF input decoupling capacitor.
+You can find example programs in the [examples](../examples) directory of this repo, as well as 
 
-Schottky diodes prevent current flowing from one supply (FTDI or VIN) back into the other.
+## Powering the Board
 
-## 5V FTDI ##
+The eeZeeProp provides lots of flexibility. You can power from FTDI, from an external source, or an external 3.3V source. If you are using a 3.3V FTDI, connect the ```3V3FTDI``` solder jumper.
 
-  * The 5V FTDI powers the board
-  * 3.3V Pin is output, supplying 3.3V to other circuits
-  * You can either
-    * Connect a 5V supply to the VIN Pin to power the board when the FTDI is disconnected. Unsolder the BYPASS jumper.
-    * Make the VIN pin a 5V output pin, powering other circuits from the 5V FTDI. To do so, solder the BYPASS jumper.
+You can still use the FTDI even if the board is powered externally, because Schottky diodes prevent current flowing from one supply (FTDI or VIN) back into the other.
 
-Note: with Bypass soldered, never power the board on VIN with FTDI 5V pin connected.
+### Limits
 
-## 3.3V FTDI ##
+```VIN``` Pin input voltage: 4.8V-6.0V @ 800mA; 4.7V-6.0V @ 100mA, room temperature. Lower input voltages are typically possible but not guaranteed in all scenarios. 
 
-  * You can either
-    * Power the board by applying 5V to VIN Pin. The 3.3V Pin is output, supplying 3.3V to other circuits. Rev 0.5 only: disconnect the 3V3FTDI solder jumper.
-    * Power the board by applying 3.3V to the 3V3 Pin. DO NOT connect anything to VIN. Rev 0.5 only: disconnect the 3V3FTDI solder jumper.
-    * Rev 0.5 only: Power the board directly from the 3.3V FTDI. Connect the 3V3FTDI solder jumper.
+Higher input voltages are acceptable on boards of Rev 0.4 and newer. The onboard regulator is either an STM LD1117-33 ([datasheet.pdf](http://www.st.com/web/en/resource/technical/document/datasheet/CD00000544.pdf)), or OnSemi NCP1117 ([datasheet.pdf](http://www.onsemi.com/pub_link/Collateral/NCP1117-D.PDF)) and can support higher voltages, but you'll need to be careful of temperatures and load current.
 
-## External 3.3V ##
+### Solder Jumpers
 
-  * Power the board by applying a 3.3V supply to the 3.3V Pin. DO NOT connect a 5V FTDI when power is applied to the 3.3V pin.
+ * ```3V3FTDI``` is used when you have a FTDI programmer supplying 3.3V (rather than 5V).
+ * ```BYPASS``` bypasses the VIN Schottky diode; power on FTDI appears on VIN.
 
-## External 5V ##
+### Keep It Simple
 
-  * Connect a 5V supply to the VIN Pin to power the board when the FTDI is disconnected. Unsolder the BYPASS jumper.
-  * 3.3V Pin is output, supplying 3.3V to other circuits
-  * You can connect a 3.3V FTDI or 5V FTDI at any time
+Use a 5V FTDI and leave ```BYPASS``` and ```3V3FTDI``` disconnected. If you are using a 3.3V FTDI, connect the ```3V3FTDI``` solder jumper and leave ```BYPASS``` disconnected.  In either case you can optionally add an external power supply to VIN.
 
-# BOE #
+### Advanced Options
 
-Be sure to solder the BOE solder jumper on the bottom of the board to select the Brown Out Enable mode you prefer.
+| BYPASS       | 3V3FTDI      | VIN pin             | 3V3 pin     | 5V FTDI | 3.3V FTDI |
+|--------------|--------------|---------------------|-------------|---------|-----------|
+| Disconnected | Disconnected | External Supply ok. | 3.3V Output | Ok      | NO        |
+| Disconnected | Connected    | External Supply ok. | 3.3V Output | NO      | Ok        |
+| Connected    | Disconnected | OUTPUT ONLY, 5V     | 3.3V Output | Ok      | NO        |
+| Connected    | Connected    | OUTPUT ONLY, 3.3V   | 3.3V Output | NO      | Ok        |
 
-# Source #
+Note: with ```BYPASS``` soldered, the ```VIN``` pin becomes output *only* and cannot be used as voltage input without potentially damaging the FTDI.
 
-This project is Open Source Hardware. Here are the [Eagle Files](https://code.google.com/p/bot-thoughts-eezee/source/browse/#svn%2Ftags%2FeeZee_Prop_0.2).
+## BOE
 
-# Other Propeller Boards #
-
-Other existing programming boards include the [Propeller Board of Education](http://www.parallax.com/Store/Microcontrollers/PropellerDevelopmentBoards/tabid/514/CategoryID/73/List/0/Level/a/ProductID/802/Default.aspx?SortField=ProductName%2cProductName), [PropStick USB](http://www.parallax.com/Store/Microcontrollers/PropellerDevelopmentBoards/tabid/514/CategoryID/73/List/0/catpageindex/2/Level/a/ProductID/411/Default.aspx?SortField=ProductName%2cProductName), [SchmartBoard SchmartModule](http://www.schmartboard.com/index.asp?page=products_populated&id=205), [Propeller QuickStart](http://www.parallax.com/Store/Microcontrollers/PropellerDevelopmentBoards/tabid/514/CategoryID/73/List/0/Level/a/ProductID/748/Default.aspx?SortField=ProductName%2cProductName) board, and others.
-
-The eeZee Prop is breadboard friendly like the PropStick USB but budget friendly like the QuickStart.  It doesn't add another virtual com port to your system because you use your existing programmer as with the SchmartBoard and others.
+BOE is Brown-Out Enable, which causes a shutdown/reset when power falls below a certain level. To enable it, connect the ```BOE``` solder jumper to the ```GND``` side.  To disable, connect ```BOE``` to the ```VCC``` side.
