@@ -87,6 +87,9 @@ Higher input voltages are acceptable on boards of Rev 0.4 and newer. The onboard
 
 Use a 5V FTDI and leave ```BYPASS``` and ```3V3FTDI``` disconnected. If you are using a 3.3V FTDI, connect the ```3V3FTDI``` solder jumper and leave ```BYPASS``` disconnected.  In either case you can optionally add an external power supply to VIN.
 
+*Configured for 5V FTDI + external power supply on VIN*:
+![Solder Jumpers](images/eeZeePropJumpers.jpg)
+
 ### Advanced Options
 
 | BYPASS       | 3V3FTDI      | VIN pin             | 3V3 pin     | 5V FTDI | 3.3V FTDI |
